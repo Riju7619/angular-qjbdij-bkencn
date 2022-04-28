@@ -1,6 +1,6 @@
 <div class="col-md-12">
 <div class="card card-container">
-  <form
+  <form *ngIf="!loggedIn"
     name="form"
     (ngSubmit)=" onSubmit()"
     #f="ngForm"
@@ -61,8 +61,13 @@
       </div>
     </div>
   </form>
-  <div class="alert alert-success" >
-    Logged in as {{form.email}}
+  <div class="alert alert-success" *ngIf="loggedIn">
+    {{msg2}}
+  </div>
+  <div class="alert alert-success" *ngIf="loggedIn">
+    <button class="btn btn-primary btn-block" (click)="logout()">
+      Logout
+    </button>
   </div>
 </div>
 </div> 

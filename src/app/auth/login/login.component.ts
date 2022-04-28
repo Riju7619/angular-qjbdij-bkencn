@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { AuditService } from 'src/app/audit.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -13,7 +14,10 @@ export class LoginComponent {
     email: null,
     password: null
   };
-  constructor(public authService: AuthService, public router: Router) {
+  msg: any;
+  msg2: any;
+  loggedIn: boolean=this.authService.isLoggedIn;
+  constructor(public authService: AuthService, public router: Router,private data :AuditService) {
     this.message = this.getMessage();
   }
 
@@ -21,16 +25,24 @@ export class LoginComponent {
     return 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
   onSubmit(){
-    //   console.log(data2);
-    //   var register={
-    //     email:data2.email,
-    //     password :data2.password,
-    //   }
-    //   this.data.login(register).subscribe(
-    //     res=>{
-    //       //this.msg = res['message'];
-    //     }
-    // )
+    var register={
+      email:this.form.email,
+      password :this.form.password
+    }
+   
+    this.data.login(register).subscribe(
+      data=>{
+        console.log(data)
+        this.msg = data;
+        this.msg2=this.msg.message;
+        console.log(this.msg2.message);
+        this.loggedIn=true;
+      }
+  )
+  this.authService.login().subscribe(() => {
+    this.message = this.getMessage();
+    
+  });
     console.log(this.form)
      }
   login() {
@@ -57,7 +69,19 @@ export class LoginComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.data.logout().subscribe(
+      data=>{
+        console.log(data)
+        this.msg = data;
+        this.msg2=this.msg.message;
+        console.log(this.msg2.message);
+        this.loggedIn=true;
+        this.form={};
+        this.loggedIn=false;
+        this.authService.logout();
+      }
+  )
+  
     this.message = this.getMessage();
   }
 }

@@ -12,6 +12,7 @@ import { ComposeMessageComponent } from './compose-message/compose-message.compo
 import { AppRoutingModule } from './app-routing.module';
 import { HeroesModule } from './heroes/heroes.module';
 import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
     HeroesModule,
     AuthModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
