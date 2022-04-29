@@ -82,7 +82,8 @@
     <div class="form-group">
       <label for="password">Password</label>
       <input
-        type="text"
+        formType = "password"
+        type="password"
         class="form-control"
         name="password"
         [(ngModel)]="form.password"
@@ -109,12 +110,12 @@
         role="alert"
         *ngIf="f.submitted"
       >
-        Login failed: 
+        Registration failed : Fill all the fields.
       </div>
     </div>
   </form>
   <div class="alert alert-success" *ngIf="registered" >
-    Successfully Registered
+    Your registration is successful!
   </div>
   <div class="alert alert-success" *ngIf="loggedIn" >
     Please Logout First!!

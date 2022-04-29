@@ -10,6 +10,10 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   message: string;
+  public showPassword: boolean = false;
+  public showPasswordOnPress: boolean = false;
+  show = false;
+  password: any;
   form: any = {
     email: null,
     password: null
@@ -19,6 +23,20 @@ export class LoginComponent {
   loggedIn: boolean=this.authService.isLoggedIn;
   constructor(public authService: AuthService, public router: Router,private data :AuditService) {
     this.message = this.getMessage();
+  }
+
+  ngOnInit() {
+    this.password = 'password';
+  }
+
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
+    }
   }
 
   getMessage() {

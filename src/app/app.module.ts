@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeroesModule } from './heroes/heroes.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewDetailsComponent } from './auth/view-details/view-details.component';
+import { UpdateDetailsComponent } from './auth/update-details/update-details.component';
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     ComposeMessageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ViewDetailsComponent,
+    UpdateDetailsComponent
   ],
   bootstrap: [ AppComponent ]
 })

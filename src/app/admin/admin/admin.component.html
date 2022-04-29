@@ -1,10 +1,48 @@
-<h2>Admin</h2>
-<nav>
+<h2>Welcome To Admin  Page</h2>
+<!-- <nav>
   <a routerLink="./" routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
   <a routerLink="./crises" routerLinkActive="active">Manage Crises</a>
   <a routerLink="./heroes" routerLinkActive="active">Manage Heroes</a>
-</nav>
+</nav> -->
+
+<table class = "table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Gender</th>
+            <th>Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.fullName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.contactNo}}</td>
+            <td>{{user.gender}}</td>
+            <td>
+                <button (click) = "updateUser(user.id)" class = "btn btn-primary"> Update</button>
+                <button (click) = "deleteUser(user.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "userDetails(user.id)"  class = "btn btn-primary" style="margin-left: 10px"> View</button>
+            </td>
+            <!-- <td style="white-space: nowrap">
+                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
+                    <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!user.isDeleting">Delete</span>
+                </button>
+            </td> -->
+        </tr>
+        <!-- <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr> -->
+    </tbody>
+</table>
+
 <router-outlet></router-outlet>
 
 

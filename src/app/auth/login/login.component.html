@@ -8,7 +8,7 @@
   >
     <div class="form-group">
       <label for="username">Username</label>
-      <input
+      <input placeholder="Username"
         type="text"
         class="form-control"
         name="username"
@@ -24,17 +24,26 @@
         Username is required!
       </div>
     </div>
-    <div class="form-group">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="form-group inner-addon right-addon">
+      <div class="input-group col-6 mx-auto"></div>
       <label for="password">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        name="password"
-        [(ngModel)]="form.password"
+      <input name="password"
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control pwd-control"
+            id="password-field" placeholder="Password"
+            [(ngModel)]="form.password"
         required
-        minlength="6"
-        #password="ngModel"
-      />
+        #password="ngModel">
+        <div>
+          <i alt="show" class="fa fa-eye" 
+          (click)="showPassword = !showPassword"
+          [class.hide]="showPassword"></i>
+          <i alt="hide" class="fa fa-eye-slash" 
+          (click)="showPassword = !showPassword"
+          [class.hide]="!showPassword"></i>
+        </div>
       <div
         class="alert alert-danger"
         role="alert"
@@ -46,6 +55,12 @@
         </div>
       </div>
     </div>
+
+    <!-- <button (click)="onClick()">
+      <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+    </button> -->
+
     <div class="form-group">
       <button class="btn btn-primary btn-block">
         Login
@@ -57,7 +72,7 @@
         role="alert"
         *ngIf="f.submitted"
       >
-        Login failed: 
+       Login failed : Try Again.
       </div>
     </div>
   </form>

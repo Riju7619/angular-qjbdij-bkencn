@@ -28,4 +28,19 @@ export class AuditService {
         //console.log(param)
         return this.http.post(`${environment.apiUrl}/auth/signout`,{});
     }
+    getAllUsers(){
+        return this.http.get(`${environment.apiUrl}/auth/users`);
+          }
+
+          getUserById(id: any){
+            return this.http.get(`${environment.apiUrl}/auth/users/${id}`);
+          }
+          deleteUser(id: any){
+            return this.http.delete(`${environment.apiUrl}/auth/users/${id}`);
+          }
+
+          updateUser(id: number, data2: { contactNo: any; email: any; fullName: any; gender: any;}) {
+            return this.http.put(`${environment.apiUrl}/auth/users/${id}`, data2);
+          }
+
 }
